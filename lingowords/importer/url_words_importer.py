@@ -18,4 +18,6 @@ class UrlWordsImporter(WordsImporter):
         r = self.fetchFile()
         # Check if the file has been fetched
         if r.status_code != 200:
-            raise Exception
+            raise FileNotFoundError('No file found from URL')
+        else:
+            return r.text

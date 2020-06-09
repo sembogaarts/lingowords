@@ -1,7 +1,7 @@
 from lingowords.importer.file_words_importer import FileWordsImporter
 from lingowords.importer.url_words_importer import UrlWordsImporter
-from lingowords.importer.words_importer import WordsImporter
-
+from lingowords.reader.words_reader import WordsReader
+from lingowords.detectors.type_detector import TypeDetector
 
 class Main:
 
@@ -18,7 +18,7 @@ class Main:
         # Check for importer
         importer = self.selectImporter(option)
 
-        self.importWords(importer)
+        self.fetchWords(importer)
 
     def selectImporter(self, i):
         switcher = {
@@ -27,11 +27,28 @@ class Main:
         }
         return switcher.get(i, "Invalid option")
 
-    def importWords(self, importerClass=WordsImporter):
+    def fetchWords(self, importer_class):
         # Initialize the given class
-        importer = importerClass()
+        importer = importer_class()
         # Asks the user for class specific input
         importer.ask()
+        # Try to get the words from source
+        try:
+            words = importer.words()  # Get the words
+            self.importWords(words)  # Parse the words
+        except FileNotFoundError:
+            print('File not found.')
+
+    def importWords(self, words):
+
+        typeDetector = TypeDetector()
+
+        reader = typeDetector.ask()
+
+        words = reader.parse(words)
+
+        print(words)
+        pass
 
 
-main = Main()
+main = Main()  # Start the script
