@@ -27,19 +27,13 @@ class WordsValidator:
         return True
 
     def is_lowercase(self, word):
-        if any(c.isupper() for c in word):
-            return False
-        else:
-            return True
+        return all(c.islower() for c in word)
 
     def contains_digits(self, word):
         return any(c.isdigit() for c in word)
 
     def has_special_characters(self, word):
-        if any((c in word) for c in self.characters):
-            return True
-        else:
-            return False
+        return any((c in word) for c in self.characters)
 
     def is_correct_length(self, word):
         # Get length of the word
