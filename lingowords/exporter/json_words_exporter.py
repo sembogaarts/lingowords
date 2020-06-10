@@ -4,6 +4,8 @@ import os
 
 
 class JsonWordsExporter(WordsExporter):
+
+    words = []
     filename = "lingwords_export.json"
     path = "~/Desktop"
 
@@ -23,8 +25,15 @@ class JsonWordsExporter(WordsExporter):
         # Create sample file
         file = open(self.path, 'w')  # Trying to create a new file or open one
         # Write all words
-        y = json.dumps(words)
-
-        file.write(y)
-
+        for word in words:
+            # Reformat Tupple
+            self.words.append({
+                'word': word[0],
+                'length': word[1]
+            })
+        # Create JSON
+        json_dump = json.dumps(self.words)
+        # Write JSON data to file
+        file.write(json_dump)
+        # Close file
         file.close()

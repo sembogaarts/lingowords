@@ -56,8 +56,8 @@ class Main:
         exporter = exportDetector.ask()
         try:
             exporter.store(words)
-        except:
-            print("Something went wrong with exporting")
+        except Exception as e:
+            print(e)
 
 
 main = Main()  # Start the script
