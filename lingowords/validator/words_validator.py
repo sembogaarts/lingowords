@@ -6,7 +6,9 @@ class WordsValidator:
     characters = (
         '-',
         ',',
-        '.'
+        '.',
+        '"',
+        '\''
     )
 
     def validate(self, word):
@@ -19,6 +21,8 @@ class WordsValidator:
         # Check for lowercase
         if not self.is_lowercase(word):
             return False
+        if self.contains_digits(word):
+            return False
         # Everything is good
         return True
 
@@ -27,6 +31,9 @@ class WordsValidator:
             return False
         else:
             return True
+
+    def contains_digits(self, word):
+        return any(c.isdigit() for c in word)
 
     def has_special_characters(self, word):
         if any((c in word) for c in self.characters):
@@ -38,5 +45,5 @@ class WordsValidator:
         # Get length of the word
         length_of_word = len(word)
         # Perform the check
-        return length_of_word < self.min_word_length or length_of_word > self.max_word_length
+        return length_of_word >= self.min_word_length and length_of_word <= self.max_word_length
 

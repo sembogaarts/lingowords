@@ -2,7 +2,7 @@ from lingowords.reader.json_words_reader import JsonWordsReader
 from lingowords.reader.text_words_reader import TextWordReader
 
 
-class TypeDetector:
+class ReaderDetector:
 
     def ask(self):
         # Show options to the user

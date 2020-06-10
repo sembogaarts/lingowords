@@ -1,11 +1,16 @@
 from lingowords.importer.file_words_importer import FileWordsImporter
 from lingowords.importer.url_words_importer import UrlWordsImporter
-from lingowords.reader.words_reader import WordsReader
-from lingowords.detectors.type_detector import TypeDetector
+from lingowords.detectors.reader_detector import ReaderDetector
+from lingowords.detectors.export_detector import ExportDetector
+from dotenv import load_dotenv
+
 
 class Main:
 
     def __init__(self):
+        # Load Enviroment
+        load_dotenv()
+        # User feedback
         self.ask()
 
     def ask(self):
@@ -40,15 +45,19 @@ class Main:
             print('File not found.')
 
     def importWords(self, words):
-
-        typeDetector = TypeDetector()
-
-        reader = typeDetector.ask()
-
+        #
+        readerDetector = ReaderDetector()
+        reader = readerDetector.ask()
         words = reader.parse(words)
+        self.exportWords(words)
 
-        print(words)
-        pass
+    def exportWords(self, words):
+        exportDetector = ExportDetector()
+        exporter = exportDetector.ask()
+        try:
+            exporter.store(words)
+        except:
+            print("Something went wrong with exporting")
 
 
 main = Main()  # Start the script
