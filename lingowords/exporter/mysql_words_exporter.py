@@ -11,13 +11,16 @@ class MysqlWordsExporter(WordsExporter):
         self.createConnection()
 
     def createConnection(self):
-        # Open connection to the database
-        self.cnx = mysql.connector.connect(
-            host=os.getenv("MYSQL_HOST"),
-            database=os.getenv("MYSQL_DATABASE"),
-            user=os.getenv("MYSQL_USERNAME"),
-            password=os.getenv("MYSQL_PASSWORD")
-        )
+        try:
+            # Open connection to the database
+            self.cnx = mysql.connector.connect(
+                host=os.getenv("MYSQL_HOST"),
+                database=os.getenv("MYSQL_DATABASE"),
+                user=os.getenv("MYSQL_USERNAME"),
+                password=os.getenv("MYSQL_PASSWORD")
+            )
+        except Exception as e:
+            print("Error connecting to MySQL, check config")
 
     def store(self, words):
         # Open a new cursor to the database

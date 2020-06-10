@@ -15,7 +15,7 @@ class ExportDetector:
 
     def selectReader(self, i):
         switcher = {
-            1: MysqlWordsExporter(),
-            2: JsonWordsExporter()
+            1: MysqlWordsExporter,
+            2: JsonWordsExporter
         }
         return switcher.get(i, "Invalid option")
