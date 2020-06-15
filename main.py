@@ -27,8 +27,11 @@ class Main:
         self.exportWords(words)
 
     def exportWords(self, words):
+        print(words)
         export_detector = ExportDetector()
-        exporter = export_detector.ask()
+        export_class = export_detector.ask()
+        exporter = export_class()
+
         try:
             exporter.store(words)
         except Exception as e:
