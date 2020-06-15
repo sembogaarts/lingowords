@@ -16,7 +16,7 @@ class ImportDetector:
 
     def selectImporter(self, i):
         switcher = {
-            1: UrlWordsImporter(),
-            2: FileWordsImporter()
+            1: UrlWordsImporter,
+            2: FileWordsImporter
         }
         return switcher.get(i, "Invalid option")
