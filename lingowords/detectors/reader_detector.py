@@ -15,7 +15,7 @@ class ReaderDetector:
 
     def selectReader(self, i):
         switcher = {
-            1: TextWordReader(),
-            2: JsonWordsReader()
+            1: TextWordReader,
+            2: JsonWordsReader
         }
         return switcher.get(i, "Invalid option")
