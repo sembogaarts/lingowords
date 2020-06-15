@@ -12,30 +12,35 @@ class Main:
         # Import Words
         self.importWords()
 
+    #
+    # Imports the word with selected importer
+    #
     def importWords(self):
         importer_detector = ImportDetector()
-        importer = importer_detector.ask()
+        importer_class = importer_detector.ask()
+        importer = importer_class()
         importer.ask()
         words = importer.words()
         self.readWords(words)
 
+    #
+    # Reads all the words in the file
+    #
     def readWords(self, words):
-        #
         reader_detector = ReaderDetector()
-        reader = reader_detector.ask()
+        reader_class = reader_detector.ask()
+        reader = reader_class()
         words = reader.parse(words)
         self.exportWords(words)
 
+    #
+    # Exports all the words
+    #
     def exportWords(self, words):
-        print(words)
         export_detector = ExportDetector()
         export_class = export_detector.ask()
         exporter = export_class()
-
-        try:
-            exporter.store(words)
-        except Exception as e:
-            print(e)
+        exporter.store(words)
 
 
 main = Main()  # Start the script

@@ -9,7 +9,14 @@ class ExportDetector:
         print("How would you like to export the words?")
         print("1. MySQL")
         print("2. JSON")
-        option = int(input("#: "))
+        # Ask the user for input
+        option = input("#: ")
+        # Check type
+        if option.isdigit():
+            option = int(option)
+        else:
+            print("[ERROR] Wrong input")
+            self.ask()
         # Check for importer
         return self.selectReader(option)
 
@@ -18,4 +25,11 @@ class ExportDetector:
             1: MysqlWordsExporter,
             2: JsonWordsExporter
         }
-        return switcher.get(i, "Invalid option")
+        # Check if the option exists
+        switch_class = switcher.get(i)
+        # Check if instance exists
+        if switch_class:
+            return switch_class
+        else:
+            print("[ERROR] Invalid option")
+            self.ask()
