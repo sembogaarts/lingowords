@@ -1,4 +1,4 @@
-# Lingowords [![Build Status](https://travis-ci.org/sembogaarts/lingogame.svg?branch=master)](https://travis-ci.org/sembogaarts/lingogame)
+# Lingowords [![Build Status](https://travis-ci.org/sembogaarts/lingowords.svg?branch=master)](https://travis-ci.org/sembogaarts/lingowords)
 Ontwikkeld voor VKBEP dit is deelopdracht 1, zorgt voor het importeren van de woorden. Deze repo staat live op [sembogaarts.nl](lingo.sembogaarts.nl).
 
 ## Installatie
