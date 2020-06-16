@@ -20,8 +20,7 @@ cp .env.example .env
 Ik maak gebruik van UnitTests om alle helpers te testen. Travis test bij elke wijziging, om de tests handmatig uit te voeren voer je de volgende commando's uit.
 
 ```$xslt
-php artisan dusk
-php vendor/phpunit/phpunit/phpunit
+python -m unittest
 ```
 
 ## Security Audits
